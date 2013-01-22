@@ -1,0 +1,14 @@
+from ordinances.models import Descendant, Ancestor
+from django.contrib import admin
+
+class AncestorInline(admin.TabularInline):
+    model = Ancestor
+    extra = 1
+
+class DescendantAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['name']}),
+    ]
+    inlines = [AncestorInline]
+
+admin.site.register(Descendant, DescendantAdmin)
