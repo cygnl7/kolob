@@ -1,0 +1,41 @@
+<html><head>
+    <title>Chappel Valley 2nd Kolob Ward</title></head>
+    <link rel="stylesheet" type="text/css" href="/static/kolob.css">
+<body>
+<h1>Chappel Valley 2nd Kolob Ward</h1>
+{% if all_ancestors_list|length > 0 %}
+    <div id="member_count_statement">
+        There are <span id="member_count">{{ all_ancestors_list|length }}</span> members of the CV2 Kolob Ward!
+    </div>
+    <table class="ancestortable">
+        <tr>
+            <th>Surname</th>
+            <th>Given Name</th>
+            <th>Birth Year</th>
+            <th>Location</th>
+            <th>Baptism</th>
+            <th>Confirmation</th>
+            <th>Initiatory</th>
+            <th>Endowment</th>
+            <th>Sealing to Spouse</th>
+            <th>Sealing to Parents</th>
+        </tr>
+    {% for ancestor in all_ancestors_list %}
+        <tr>
+            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }} {{ forloop.counter|divisibleby:2|yesno:"bullet,bulletalt" }}'>{{ ancestor.surname }}</td>
+            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.given_name }}</td>
+            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.birth_year }}</td>
+            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.location }}</td>
+            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.baptism_date }}</td>
+            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.confirmation_date }}</td>
+            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.initiatory_date }}</td>
+            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.endowment_date }}</td>
+            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.sealing_to_spouse_date }}</td>
+            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.sealing_to_parents_date }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No ancestor records available.</p>
+{% endif %}
+</body></html>

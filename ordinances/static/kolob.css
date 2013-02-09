@@ -1,0 +1,118 @@
+/* Thanks to http://veerle-v2.duoh.com/blog/comments/a_css_styled_table for providing a starting point for
+ * this style!
+ */
+body {
+	font: normal 14px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	background: #E6EAE9;
+}
+
+a {
+	color: #c75f3e;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+table.ancestortable {
+	width: 100%;
+	max-width: 100%;
+	padding: 0;
+	margin: 0;
+	/*table-layout:fixed;*/
+}
+
+.jobtitlerow {
+	background-color: #EACDA9;
+	width:100%;
+	display:inline-block;
+	vertical-align:middle;
+	clear:both;
+	margin-top:8px;
+	margin-bottom:2px;
+	padding:4px;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+}
+
+.toplink {
+	float:right;
+	text-decoration: underline;
+}
+
+.tabletitle {
+	float:left;
+}
+
+select {
+	border: 1px solid #4f6b72;
+	background-color: #c1dad7;
+	color: #4f6b72;
+}
+
+th {
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 6px 6px 6px 6px;
+	background-color: #f6d3a7;
+}
+
+th.leftaligned {
+	text-align: left;
+}
+
+td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	padding: 20px 4px 20px 4px;
+	color: #4f6b72;
+	text-align: center;
+	vertical-align: middle;
+	overflow:hidden;
+}
+
+td.odd {
+	/*background: #F5FAFA;*/
+	background: #EAF5F5;
+	color: #797268;
+}
+
+td.bullet {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #fff url(bullet1.gif) no-repeat;
+	/*font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
+	text-align: left;
+}
+
+td.bulletalt {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #EAF5F5 url(bullet2.gif) no-repeat;
+	/*font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
+	color: #797268;
+	text-align: left;
+}
+
+#controls {
+	overflow: hidden;
+	width: 100%;
+}
+
+#userselector {
+	float: left;
+}
+
+#jobselector {
+	float: right;
+}
+
+.branchname {
+	font-size: 12px;
+}
