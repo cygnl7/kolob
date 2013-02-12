@@ -1,41 +1,117 @@
 <html><head>
     <title>Chappel Valley 2nd Kolob Ward</title></head>
     <link rel="stylesheet" type="text/css" href="/static/kolob.css">
+    <link href="/static/jquery-ui-1.10.0.custom/css/subdued-green/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+    <!--<script src="/static/jquery-1.9.1.js"></script>-->
+    <script src="/static/jquery-ui-1.10.0.custom/js/jquery-1.9.0.js"></script>
+    <script src="/static/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.js"></script>
+    <script src="/static/jquery.easing.min.js"></script>
+
+    <link href="/static/jquery-counter/src/jquery.counter-analog.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/static/jquery-counter/src/jquery.counter-analog2.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/static/jquery-counter/src/jquery.counter.js"></script>
+
+    <script language="JavaScript">
+
+$(window).load(function() {
+    jQuery.easing.def = "easeOutCirc";
+    var goal = 600;
+    var member_count = {{ all_ancestors_list|length }}
+    var ordinance_count = {{ ordinance_count }}
+
+    // Progress bar
+    $('#progressbar').progressbar({value:0.0001, max:goal});
+    $("#progressbar .ui-progressbar-value").addClass("ui-corner-right");
+    var new_width = member_count * 100 / goal + "%";
+    var duration = 2000;
+    $("#progressbar .ui-progressbar-value").animate({
+        width: new_width
+    },
+    {
+        step: function(val, fx) {
+            var percent = Math.floor(val);
+            if (val < 1) { 
+                percent = val.toFixed(1);
+            }
+            $("#progress_number").html(percent + "%");
+	    },
+        duration: duration + 1000 // + extra is lame attempt to keep animations in sync
+    });
+
+    // Counter
+    var interval = duration / member_count;
+    $('#member_counter').addClass('counter-analog2').counter({
+        initial: '000',
+        direction: 'up',
+        interval: interval,
+        format: '999',
+        stop: member_count 
+    });
+    interval = duration / ordinance_count;
+    $('#ordinance_counter').addClass('counter-analog2').counter({
+        initial: '000',
+        direction: 'up',
+        interval: interval,
+        format: '999',
+        stop: ordinance_count
+    });
+});
+
+    </script>
 <body>
-<h1>Chappel Valley 2nd Kolob Ward</h1>
 {% if all_ancestors_list|length > 0 %}
-    <div id="member_count_statement">
-        There are <span id="member_count">{{ all_ancestors_list|length }}</span> members of the CV2 Kolob Ward!
-    </div>
-    <table class="ancestortable">
-        <tr>
-            <th>Surname</th>
-            <th>Given Name</th>
-            <th>Birth Year</th>
-            <th>Location</th>
-            <th>Baptism</th>
-            <th>Confirmation</th>
-            <th>Initiatory</th>
-            <th>Endowment</th>
-            <th>Sealing to Spouse</th>
-            <th>Sealing to Parents</th>
-        </tr>
-    {% for ancestor in all_ancestors_list %}
-        <tr>
-            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }} {{ forloop.counter|divisibleby:2|yesno:"bullet,bulletalt" }}'>{{ ancestor.surname }}</td>
-            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.given_name }}</td>
-            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.birth_year }}</td>
-            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.location }}</td>
-            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.baptism_date }}</td>
-            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.confirmation_date }}</td>
-            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.initiatory_date }}</td>
-            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.endowment_date }}</td>
-            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.sealing_to_spouse_date }}</td>
-            <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.sealing_to_parents_date }}</td>
-        </tr>
-    {% endfor %}
-    </table>
+    <div id="allinfo">
+<h1>Chappel Valley 2nd Kolob Ward</h1>
+        <div id="counters">
+            <div id="member_count" class="counter_container">
+                <div id="member_counter"></div>
+                <div class="counter_label">Members</div>
+            </div>
+            <div id="ordinance_count" class="counter_container">
+                <div id="ordinance_counter"></div>
+                <div class="counter_label">Ordinances</div>
+            </div>
+        </div>
+        <div id="ordinance_goal">
+            <div id="progress">
+                <div id="zero_progress" class="inline_progress inline_progress_number">0</div>
+                <div class="inline_progress">
+                    <div id="progressbar"><span id="progress_number">0</span></div>
+                </div>
+                <div id="goal_progress" class="inline_progress inline_progress_number">600</div>
+            </div>
+            <div class="goal_label">Ordinance Goal</div>
+        </div>
+        <table class="ancestortable">
+            <tr>
+                <th class="columnone">Surname</th>
+                <th>Given Name</th>
+                <th>Birth Year</th>
+                <th>Location</th>
+                <th>Baptism</th>
+                <th>Confirmation</th>
+                <th>Initiatory</th>
+                <th>Endowment</th>
+                <th>Sealing to Spouse</th>
+                <th>Sealing to Parents</th>
+            </tr>
+        {% for ancestor in all_ancestors_list %}
+            <tr>
+                <td class='{{ forloop.counter|divisibleby:2|yesno:"bullet,bulletalt" }}'>{{ ancestor.surname }}</td>
+                <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.given_name }}</td>
+                <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.birth_year }}</td>
+                <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.location }}</td>
+                <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.baptism_date }}</td>
+                <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.confirmation_date }}</td>
+                <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.initiatory_date }}</td>
+                <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.endowment_date }}</td>
+                <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.sealing_to_spouse_date }}</td>
+                <td class='{{ forloop.counter|divisibleby:2|yesno:"even,odd" }}'>{{ ancestor.sealing_to_parents_date }}</td>
+            </tr>
+        {% endfor %}
+        </table>
 {% else %}
     <p>No ancestor records available.</p>
 {% endif %}
+    </div>
 </body></html>

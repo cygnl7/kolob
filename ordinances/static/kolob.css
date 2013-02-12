@@ -2,7 +2,7 @@
  * this style!
  */
 body {
-	font: normal 14px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font: normal 12px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 	color: #4f6b72;
 	background: #E6EAE9;
 }
@@ -10,7 +10,11 @@ body {
 a {
 	color: #c75f3e;
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 10px;
+}
+
+h1 {
+	text-align: center;
 }
 
 table.ancestortable {
@@ -18,9 +22,11 @@ table.ancestortable {
 	max-width: 100%;
 	padding: 0;
 	margin: 0;
-	/*table-layout:fixed;*/
+	table-layout:fixed;
+    font-size: 12px;
 }
 
+/*
 .jobtitlerow {
 	background-color: #EACDA9;
 	width:100%;
@@ -48,9 +54,10 @@ select {
 	background-color: #c1dad7;
 	color: #4f6b72;
 }
+*/
 
 th {
-	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 	color: #4f6b72;
 	border-right: 1px solid #C1DAD7;
 	border-bottom: 1px solid #C1DAD7;
@@ -62,7 +69,7 @@ th {
 	background-color: #f6d3a7;
 }
 
-th.leftaligned {
+th.columnone {
 	text-align: left;
 }
 
@@ -87,7 +94,7 @@ td.bullet {
 	border-left: 1px solid #C1DAD7;
 	border-top: 0;
 	background: #fff url(bullet1.gif) no-repeat;
-	/*font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
+	/*font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
 	text-align: left;
 }
 
@@ -95,11 +102,12 @@ td.bulletalt {
 	border-left: 1px solid #C1DAD7;
 	border-top: 0;
 	background: #EAF5F5 url(bullet2.gif) no-repeat;
-	/*font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
+	/*font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
 	color: #797268;
 	text-align: left;
 }
 
+/*
 #controls {
 	overflow: hidden;
 	width: 100%;
@@ -114,5 +122,102 @@ td.bulletalt {
 }
 
 .branchname {
-	font-size: 12px;
+	font-size: 10px;
 }
+*/
+
+/****************/
+/* Progress Bar */
+/****************/
+
+#progress {
+    padding: 20px 0px 0px 0px;
+}
+
+#progressbar {
+    height: 20px;
+}
+
+.ui-progressbar {
+    height:20px;
+    width:452px;
+    margin:0 auto;
+}
+
+.ui-progressbar span {
+    width:452px;
+    position:absolute;
+    text-align:center;
+    font-weight:bold;
+}
+
+.inline_progress {
+    float: left;
+    padding: 4px;
+}
+
+.inline_progress_number {
+    margin-top: 4px;
+    width: 30px;
+}
+
+#zero_progress {
+    text-align: right;
+}
+
+#goal_progress {
+    text-align: left;
+}
+
+.goal_label {
+    font-size: 18px;
+}
+
+/************/
+/* Counters */
+/************/
+
+#counters {
+    width: 452px;
+    overflow: auto;
+    margin: 0 auto;
+}
+
+.counter_container {
+    float: left;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+    border-radius: 16px;
+	background: #fff;
+	padding: 20px 8px 20px 8px;
+    margin: 4px;
+	color: #4f6b72;
+	text-align: center;
+	overflow:hidden;
+}
+
+.counter_label {
+    padding: 4px;
+}
+
+#ordinance_goal {
+    width: 538px;
+    overflow: auto;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0px 0px 20px 0px;
+    /*
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+    border-radius: 8px;
+    */
+}
+
+/*
+#allinfo {
+    width: 1600px;
+    overflow: auto;
+    margin: 0 auto;
+}
+*/
