@@ -3,8 +3,8 @@ from django.contrib import admin
 
 class AncestorAdmin(admin.ModelAdmin):
     list_display = ('submitter',
-                    'given_name',
                     'surname',
+                    'given_name',
                     'birth_year',
                     'location',
                     'baptism_date',
@@ -31,8 +31,8 @@ class AncestorAdmin(admin.ModelAdmin):
 
     def queryset(self, request):
         if request.user.is_superuser:
-            return Ancestor.objects.all()
+            return Ancestor.objects.order_by('surname', 'given_name')
         else:
-            return Ancestor.objects.filter(submitter=request.user)
+            return Ancestor.objects.filter(submitter=request.user).order_by('surname', 'given_name')
 
 admin.site.register(Ancestor, AncestorAdmin)
