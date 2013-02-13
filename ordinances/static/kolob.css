@@ -2,7 +2,7 @@
  * this style!
  */
 body {
-	font: normal 12px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font: normal 1em "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 	color: #4f6b72;
 	background: #E6EAE9;
 }
@@ -10,7 +10,7 @@ body {
 a {
 	color: #c75f3e;
 	text-decoration: none;
-	font-size: 10px;
+	font-size: 1em;
 }
 
 h1 {
@@ -23,7 +23,7 @@ table.ancestortable {
 	padding: 0;
 	margin: 0;
 	table-layout:fixed;
-    font-size: 12px;
+    font-size: 1em;
 }
 
 /*
@@ -57,7 +57,7 @@ select {
 */
 
 th {
-	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font: bold 1em "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 	color: #4f6b72;
 	border-right: 1px solid #C1DAD7;
 	border-bottom: 1px solid #C1DAD7;
@@ -94,7 +94,6 @@ td.bullet {
 	border-left: 1px solid #C1DAD7;
 	border-top: 0;
 	background: #fff url(bullet1.gif) no-repeat;
-	/*font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
 	text-align: left;
 }
 
@@ -102,7 +101,6 @@ td.bulletalt {
 	border-left: 1px solid #C1DAD7;
 	border-top: 0;
 	background: #EAF5F5 url(bullet2.gif) no-repeat;
-	/*font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
 	color: #797268;
 	text-align: left;
 }
@@ -130,12 +128,28 @@ td.bulletalt {
 /* Progress Bar */
 /****************/
 
+#ordinance_goal {
+    width: 548px;
+    overflow: auto;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px 0px 20px 0px;
+    /*
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+    border-radius: 8px;
+    */
+}
+
 #progress {
-    padding: 20px 0px 0px 0px;
+    width: 548px;
+    margin: 0 auto;
+    height: 26px;
 }
 
 #progressbar {
-    height: 20px;
+    height: 26px;
 }
 
 .ui-progressbar {
@@ -148,6 +162,7 @@ td.bulletalt {
     width:452px;
     position:absolute;
     text-align:center;
+    padding:3px 0 0 0;
     font-weight:bold;
 }
 
@@ -170,7 +185,7 @@ td.bulletalt {
 }
 
 .goal_label {
-    font-size: 18px;
+    font-size: 1.3em;
 }
 
 /************/
@@ -178,7 +193,7 @@ td.bulletalt {
 /************/
 
 #counters {
-    width: 452px;
+    width: 462px;
     overflow: auto;
     margin: 0 auto;
 }
@@ -198,20 +213,6 @@ td.bulletalt {
 
 .counter_label {
     padding: 4px;
-}
-
-#ordinance_goal {
-    width: 538px;
-    overflow: auto;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0px 0px 20px 0px;
-    /*
-	border-right: 1px solid #C1DAD7;
-	border-bottom: 1px solid #C1DAD7;
-	background: #fff;
-    border-radius: 8px;
-    */
 }
 
 /*
