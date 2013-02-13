@@ -13,7 +13,16 @@ class AncestorAdmin(admin.ModelAdmin):
                     'endowment_date',
                     'sealing_to_spouse_date',
                     'sealing_to_parents_date')
-    list_display_links = ('surname', 'given_name')
+    list_display_links = ('surname',
+			  'given_name',
+			  'birth_year',
+			  'location',
+			  'baptism_date',
+			  'confirmation_date',
+			  'initiatory_date',
+			  'endowment_date',
+			  'sealing_to_spouse_date',
+			  'sealing_to_parents_date')
 
     fieldsets = [
         (None, {'fields': ['given_name', 'surname', 'birth_year', 'location']}),
