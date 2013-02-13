@@ -5,7 +5,7 @@ class Ancestor(models.Model):
     submitter = models.ForeignKey(User, null=True, blank=True)
     given_name = models.CharField(max_length=100, blank=True, null=True)
     surname = models.CharField(max_length=100)
-    birth_year = models.CharField("birth year", max_length=4, blank=True, null=True)
+    birth_year = models.CharField("year", max_length=4, blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     baptism_date = models.DateField("baptism date", blank=True, null=True)
     confirmation_date = models.DateField("confirmation date", blank=True, null=True)
