@@ -48,26 +48,31 @@ $(window).load(function() {
 
     // Counter
     var interval = duration / member_count;
+    if (member_count == 0) {
+        interval = 1;
+    }
     $('#member_counter').addClass('counter-analog2').counter({
         initial: '000',
         direction: 'up',
         interval: interval,
         format: '999',
-        stop: member_count 
+        stop: member_count.toString()
     });
     interval = duration / ordinance_count;
+    if (ordinance_count == 0) {
+        interval = 1;
+    }
     $('#ordinance_counter').addClass('counter-analog2').counter({
         initial: '000',
         direction: 'up',
         interval: interval,
         format: '999',
-        stop: ordinance_count
+        stop: ordinance_count.toString()
     });
 });
 
     </script>
 <body>
-{% if all_ancestors_list|length > 0 %}
     <div id="allinfo">
 <h1>Chappel Valley 2nd Kolob Ward</h1>
         <div id="counters">
@@ -118,8 +123,5 @@ $(window).load(function() {
             </tr>
         {% endfor %}
         </table>
-{% else %}
-    <p>No ancestor records available.</p>
-{% endif %}
     </div>
 </body></html>
