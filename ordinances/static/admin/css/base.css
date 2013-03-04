@@ -833,3 +833,8 @@ table#change-history tbody th {
     color: #666;
 }
 
+#reportlink {
+	float:right;
+	margin-right:8px;
+}
+
