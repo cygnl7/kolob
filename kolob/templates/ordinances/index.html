@@ -30,7 +30,7 @@ $(window).load(function() {
     // Progress bar
     $('#progressbar').progressbar({value:0.0001, max:goal});
     $("#progressbar .ui-progressbar-value").addClass("ui-corner-right");
-    var new_width = ordinance_count * 100 / goal + "%";
+    var new_width = member_count * 100 / goal + "%";
     var duration = 2000;
     $("#progressbar .ui-progressbar-value").animate({
         width: new_width
@@ -93,7 +93,7 @@ $(window).load(function() {
                 </div>
                 <div id="goal_progress" class="inline_progress inline_progress_number">600</div>
             </div>
-            <div class="goal_label">Ordinance Goal</div>
+            <div class="goal_label">Member Goal</div>
         </div>
         <table class="ancestortable">
             <tr>
