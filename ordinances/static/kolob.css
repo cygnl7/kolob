@@ -18,6 +18,11 @@ h1 {
 	font-size: 2.5em;
 }
 
+#adminlink {
+    float:right;
+    font-size: 0.8em;
+}
+
 table.ancestortable {
 	width: 100%;
 	max-width: 100%;
