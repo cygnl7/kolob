@@ -1,8 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Ward(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.name
+
 class Ancestor(models.Model):
     submitter = models.ForeignKey(User, null=True, blank=True)
+    ward = models.ForeignKey(Ward)
     given_name = models.CharField(max_length=100, blank=True, null=True)
     surname = models.CharField(max_length=100)
     birth_year = models.CharField("year", max_length=4, blank=True, null=True)
@@ -16,3 +23,4 @@ class Ancestor(models.Model):
 
     def __unicode__(self):
         return self.given_name + " " + self.surname
+

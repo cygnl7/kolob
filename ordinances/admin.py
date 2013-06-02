@@ -1,8 +1,9 @@
-from ordinances.models import Ancestor
+from ordinances.models import Ancestor, Ward
 from django.contrib import admin
 
 class AncestorAdmin(admin.ModelAdmin):
     list_display = ('submitter',
+                    'ward',
                     'surname',
                     'given_name',
                     'birth_year',
@@ -37,6 +38,7 @@ class AncestorAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if getattr(obj, 'submitter', None) is None:
             obj.submitter = request.user
+            obj.ward = Ward.objects.all()[0] # TODO: get the user's ward
         obj.save()
 
     def queryset(self, request):
@@ -46,3 +48,4 @@ class AncestorAdmin(admin.ModelAdmin):
             return Ancestor.objects.filter(submitter=request.user).order_by('surname', 'given_name')
 
 admin.site.register(Ancestor, AncestorAdmin)
+admin.site.register(Ward)
