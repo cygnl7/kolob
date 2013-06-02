@@ -5,11 +5,12 @@ from ordinances.models import Ancestor
 
 def index(request):
     user_ward = ''
-    try:
+    ward_member_goal = 0
+    ward_ordinance_goal = 0
+    if hasattr(request.user, 'wardmember'):
         user_ward = request.user.wardmember.ward.name
-    except:
-        # Probably the user doesn't have a ward, which shouldn't happen, but ok
-        pass
+        ward_member_goal = request.user.wardmember.ward.member_goal
+        ward_ordinance_goal= request.user.wardmember.ward.ordinance_goal
     all_ancestors_list = Ancestor.objects.filter(ward__name = user_ward).order_by('surname', 'given_name')
     baptism_count = all_ancestors_list.filter(baptism_date__year = 2013).count()
     confirmation_count = all_ancestors_list.filter(confirmation_date__year = 2013).count()
@@ -22,6 +23,8 @@ def index(request):
     context = Context({
         'all_ancestors_list': all_ancestors_list,
         'ordinance_count': ordinance_count,
-        'ward_name':user_ward
+        'ward_name': user_ward,
+        'ward_member_goal': ward_member_goal,
+        'ward_ordinance_goal': ward_ordinance_goal
     })
     return HttpResponse(template.render(context))

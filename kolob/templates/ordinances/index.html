@@ -18,7 +18,8 @@
 
 $(window).load(function() {
     jQuery.easing.def = "easeOutCirc";
-    var goal = 600;
+    var member_goal = {{ ward_member_goal }};
+    var ordinance_goal = {{ ward_ordinance_goal }};
     var member_count = $.url().param('member_count'); // For testing
     if (member_count == undefined) {
         member_count = {{ all_ancestors_list|length }};
@@ -27,12 +28,12 @@ $(window).load(function() {
     if (ordinance_count == undefined) {
         ordinance_count = {{ ordinance_count }};
     }
-    // Progress bar
-    $('#progressbar').progressbar({value:0.0001, max:goal});
-    $("#progressbar .ui-progressbar-value").addClass("ui-corner-right");
-    var new_width = member_count * 100 / goal + "%";
+    // Member progress bar
+    $('#member_progressbar').progressbar({value:0.0001, max:member_goal});
+    $("#member_progressbar .ui-progressbar-value").addClass("ui-corner-right");
+    var new_width = member_count * 100 / member_goal + "%";
     var duration = 2000;
-    $("#progressbar .ui-progressbar-value").animate({
+    $("#member_progressbar .ui-progressbar-value").animate({
         width: new_width
     },
     {
@@ -41,7 +42,26 @@ $(window).load(function() {
             if (val < 1) { 
                 percent = val.toFixed(1);
             }
-            $("#progress_number").html(percent + "%");
+            $("#member_progress_number").html(percent + "%");
+	    },
+        duration: duration + 1000 // + extra is lame attempt to keep animations in sync
+    });
+
+    // Ordinance progress bar
+    $('#ordinance_progressbar').progressbar({value:0.0001, max:ordinance_goal});
+    $("#ordinance_progressbar .ui-progressbar-value").addClass("ui-corner-right");
+    var new_width = ordinance_count * 100 / ordinance_goal + "%";
+    var duration = 2000;
+    $("#ordinance_progressbar .ui-progressbar-value").animate({
+        width: new_width
+    },
+    {
+        step: function(val, fx) {
+            var percent = Math.floor(val);
+            if (val < 1) { 
+                percent = val.toFixed(1);
+            }
+            $("#ordinance_progress_number").html(percent + "%");
 	    },
         duration: duration + 1000 // + extra is lame attempt to keep animations in sync
     });
@@ -88,15 +108,25 @@ $(window).load(function() {
                 <div class="counter_label">Ordinances</div>
             </div>
         </div>
-        <div id="ordinance_goal">
-            <div id="progress">
-                <div id="zero_progress" class="inline_progress inline_progress_number">0</div>
+        <div class="goal">
+            <div class="progress">
+                <div class="zero_progress inline_progress inline_progress_number">0</div>
                 <div class="inline_progress">
-                    <div id="progressbar"><span id="progress_number">0</span></div>
+                    <div id="member_progressbar"><span id="member_progress_number">0</span></div>
                 </div>
-                <div id="goal_progress" class="inline_progress inline_progress_number">600</div>
+                <div class="goal_progress inline_progress inline_progress_number">{{ ward_ordinance_goal }}</div>
             </div>
             <div class="goal_label">Member Goal</div>
+        </div>
+        <div class="goal">
+            <div class="progress">
+                <div class="zero_progress inline_progress inline_progress_number">0</div>
+                <div class="inline_progress">
+                    <div id="ordinance_progressbar"><span id="ordinance_progress_number">0</span></div>
+                </div>
+                <div class="goal_progress inline_progress inline_progress_number">{{ ward_ordinance_goal }}</div>
+            </div>
+            <div class="goal_label">Ordinance Goal</div>
         </div>
         <table class="ancestortable">
             <tr>

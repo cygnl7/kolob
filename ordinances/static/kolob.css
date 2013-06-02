@@ -134,7 +134,7 @@ td.bulletalt {
 /* Progress Bar */
 /****************/
 
-#ordinance_goal {
+.goal {
     width: 548px;
     overflow: auto;
     margin: 0 auto;
@@ -148,7 +148,7 @@ td.bulletalt {
     */
 }
 
-#progress {
+.progress {
     width: 548px;
     margin: 0 auto;
     height: 26px;
@@ -182,11 +182,11 @@ td.bulletalt {
     width: 30px;
 }
 
-#zero_progress {
+.zero_progress {
     text-align: right;
 }
 
-#goal_progress {
+.goal_progress {
     text-align: left;
 }
 
@@ -201,7 +201,7 @@ td.bulletalt {
 #counters {
     width: 462px;
     overflow: auto;
-    margin: 0 auto;
+    margin: 30px auto 20px auto;
 }
 
 .counter_container {
