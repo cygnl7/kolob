@@ -7,6 +7,14 @@ class Ward(models.Model):
     def __unicode__(self):
         return self.name
 
+# Extending the user model
+class WardMember(models.Model):
+    user = models.OneToOneField(User)
+    ward = models.ForeignKey(Ward)
+
+    def __unicode__(self):
+        return self.ward.name
+
 class Ancestor(models.Model):
     submitter = models.ForeignKey(User, null=True, blank=True)
     ward = models.ForeignKey(Ward)
