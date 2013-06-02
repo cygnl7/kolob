@@ -61,7 +61,7 @@ class AncestorAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if getattr(obj, 'submitter', None) is None:
             obj.submitter = request.user
-            obj.ward = Ward.objects.all()[0] # TODO: get the user's ward
+            obj.ward = request.user.wardmember.ward
         obj.save()
 
     def queryset(self, request):
