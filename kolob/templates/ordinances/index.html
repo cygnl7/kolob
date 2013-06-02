@@ -18,8 +18,8 @@
 
 $(window).load(function() {
     jQuery.easing.def = "easeOutCirc";
-    var member_goal = {{ ward_member_goal }};
-    var ordinance_goal = {{ ward_ordinance_goal }};
+    var member_goal = {{ member_goal }};
+    var ordinance_goal = {{ ordinance_goal }};
     var member_count = $.url().param('member_count'); // For testing
     if (member_count == undefined) {
         member_count = {{ all_ancestors_list|length }};
@@ -114,7 +114,7 @@ $(window).load(function() {
                 <div class="inline_progress">
                     <div id="member_progressbar" class="progressbar"><span class="inline_progress_percent" id="member_progress_number">0</span></div>
                 </div>
-                <div class="goal_progress inline_progress inline_progress_number">{{ ward_member_goal }}</div>
+                <div class="goal_progress inline_progress inline_progress_number">{{ member_goal }}</div>
             </div>
             <div class="goal_label">Member Goal</div>
         </div>
@@ -124,7 +124,7 @@ $(window).load(function() {
                 <div class="inline_progress">
                     <div id="ordinance_progressbar" class="progressbar"><span class="inline_progress_percent" id="ordinance_progress_number">0</span></div>
                 </div>
-                <div class="goal_progress inline_progress inline_progress_number">{{ ward_ordinance_goal }}</div>
+                <div class="goal_progress inline_progress inline_progress_number">{{ ordinance_goal }}</div>
             </div>
             <div class="goal_label">Ordinance Goal</div>
         </div>
