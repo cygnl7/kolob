@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 
 class Ward(models.Model):
     name = models.CharField(max_length=100)
+    member_goal = models.IntegerField('member goal')
+    ordinance_goal = models.IntegerField('ordinance goal')
 
     def __unicode__(self):
         return self.name

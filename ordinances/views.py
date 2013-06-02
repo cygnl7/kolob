@@ -4,7 +4,12 @@ from django.template import Context, loader
 from ordinances.models import Ancestor
 
 def index(request):
-    user_ward = request.user.wardmember.ward.name
+    user_ward = ''
+    try:
+        user_ward = request.user.wardmember.ward.name
+    except:
+        # Probably the user doesn't have a ward, which shouldn't happen, but ok
+        pass
     all_ancestors_list = Ancestor.objects.filter(ward__name = user_ward).order_by('surname', 'given_name')
     baptism_count = all_ancestors_list.filter(baptism_date__year = 2013).count()
     confirmation_count = all_ancestors_list.filter(confirmation_date__year = 2013).count()
