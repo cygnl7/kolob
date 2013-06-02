@@ -112,9 +112,9 @@ $(window).load(function() {
             <div class="progress">
                 <div class="zero_progress inline_progress inline_progress_number">0</div>
                 <div class="inline_progress">
-                    <div id="member_progressbar"><span id="member_progress_number">0</span></div>
+                    <div id="member_progressbar" class="progressbar"><span class="inline_progress_percent" id="member_progress_number">0</span></div>
                 </div>
-                <div class="goal_progress inline_progress inline_progress_number">{{ ward_ordinance_goal }}</div>
+                <div class="goal_progress inline_progress inline_progress_number">{{ ward_member_goal }}</div>
             </div>
             <div class="goal_label">Member Goal</div>
         </div>
@@ -122,7 +122,7 @@ $(window).load(function() {
             <div class="progress">
                 <div class="zero_progress inline_progress inline_progress_number">0</div>
                 <div class="inline_progress">
-                    <div id="ordinance_progressbar"><span id="ordinance_progress_number">0</span></div>
+                    <div id="ordinance_progressbar" class="progressbar"><span class="inline_progress_percent" id="ordinance_progress_number">0</span></div>
                 </div>
                 <div class="goal_progress inline_progress inline_progress_number">{{ ward_ordinance_goal }}</div>
             </div>

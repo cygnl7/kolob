@@ -154,7 +154,7 @@ td.bulletalt {
     height: 26px;
 }
 
-#progressbar {
+.progressbar {
     height: 26px;
 }
 
@@ -178,8 +178,12 @@ td.bulletalt {
 }
 
 .inline_progress_number {
-    margin-top: 4px;
+    margin-top: 8px;
     width: 30px;
+}
+
+.inline_progress_percent {
+    margin-top: 5px;
 }
 
 .zero_progress {
