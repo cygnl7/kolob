@@ -7,4 +7,3 @@ from ordinances.models import Ward
 class WardUser(AbstractUser):
     ward = models.ForeignKey(Ward, null=True)
     objects = UserManager()
-

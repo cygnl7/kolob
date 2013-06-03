@@ -12,7 +12,7 @@ class Ward(models.Model):
 
 
 class Ancestor(models.Model):
-    submitter = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
+    submitter = models.ForeignKey(settings.AUTH_USER_MODEL)
     ward = models.ForeignKey(Ward)
     given_name = models.CharField(max_length=100, blank=True, null=True)
     surname = models.CharField(max_length=100)
