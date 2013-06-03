@@ -17,10 +17,9 @@ def index(request):
         user_ward_name = request.user.wardmember.ward.name
 
     # See if we have a valid ward name, ALL_WARDS is always valid
-    wardlist = [] # Save for later, too
+    ward_list = Ward.objects.all()
     if (user_ward_name != ALL_WARDS):
-        wardlist = Ward.objects.filter(name = user_ward_name)
-        if (wardlist.count() < 1):
+        if (ward_list.filter(name = user_ward_name).count() < 1):
             user_ward_name = ALL_WARDS
 
     # Now figure out goals and ancestor list
@@ -33,9 +32,10 @@ def index(request):
         ordinance_goal = Ward.objects.aggregate(Sum('ordinance_goal'))['ordinance_goal__sum']
     else:
         all_ancestors_list = Ancestor.objects.filter(ward__name = user_ward_name).order_by('surname', 'given_name')
-        if (wardlist.count() > 0):
-            member_goal = wardlist[0].member_goal
-            ordinance_goal= wardlist[0].ordinance_goal
+        myward = ward_list.filter(name = user_ward_name)
+        if (myward.count() > 0):
+            member_goal = myward[0].member_goal
+            ordinance_goal= myward[0].ordinance_goal
 
     baptism_count = all_ancestors_list.filter(baptism_date__year = 2013).count()
     confirmation_count = all_ancestors_list.filter(confirmation_date__year = 2013).count()
@@ -50,6 +50,8 @@ def index(request):
         'ordinance_count': ordinance_count,
         'ward_name': user_ward_name,
         'member_goal': member_goal,
-        'ordinance_goal': ordinance_goal
+        'ordinance_goal': ordinance_goal,
+        'ward_list': ward_list,
+        'all_wards_name': ALL_WARDS
     })
     return HttpResponse(template.render(context))

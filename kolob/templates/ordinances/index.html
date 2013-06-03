@@ -89,6 +89,14 @@ $(window).load(function() {
         format: '999',
         stop: ordinance_count.toString()
     });
+
+    // Ward select control
+    // Set the current selection
+    var selectedval = ("{{ ward_name }}" == "{{all_wards_name}}" ? "All" : "{{ ward_name }}");
+    $('#wardselectcontrol').val(selectedval);
+    $('#wardselectcontrol').change(function() {
+        window.location.search = "ward=" + $('#wardselectcontrol option:selected').text();
+    });
 });
 
     </script>
@@ -127,6 +135,14 @@ $(window).load(function() {
                 <div class="goal_progress inline_progress inline_progress_number">{{ ordinance_goal }}</div>
             </div>
             <div class="goal_label">Ordinance Goal</div>
+        </div>
+        <div id="wardselect">
+            <select id="wardselectcontrol">
+                <option value="All">All</option>
+                {% for ward in ward_list %}
+                <option value="{{ ward }}">{{ ward }}</option>
+                {% endfor %}
+            </select>
         </div>
         <table class="ancestortable">
             <tr>

@@ -1,5 +1,5 @@
 /* Thanks to http://veerle-v2.duoh.com/blog/comments/a_css_styled_table for providing a starting point for
- * this style!
+ * the table style!
  */
 body {
 	font: normal 1em "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
@@ -111,24 +111,9 @@ td.bulletalt {
 	text-align: left;
 }
 
-/*
-#controls {
-	overflow: hidden;
-	width: 100%;
+#wardselect {
+    text-align: center;
 }
-
-#userselector {
-	float: left;
-}
-
-#jobselector {
-	float: right;
-}
-
-.branchname {
-	font-size: 10px;
-}
-*/
 
 /****************/
 /* Progress Bar */
