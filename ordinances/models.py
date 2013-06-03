@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+
+from kolob import settings
 
 class Ward(models.Model):
     name = models.CharField(max_length=100)
@@ -9,16 +10,9 @@ class Ward(models.Model):
     def __unicode__(self):
         return self.name
 
-# Extending the user model
-class WardMember(models.Model):
-    user = models.OneToOneField(User)
-    ward = models.ForeignKey(Ward)
-
-    def __unicode__(self):
-        return self.ward.name
 
 class Ancestor(models.Model):
-    submitter = models.ForeignKey(User, null=True, blank=True)
+    submitter = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     ward = models.ForeignKey(Ward)
     given_name = models.CharField(max_length=100, blank=True, null=True)
     surname = models.CharField(max_length=100)

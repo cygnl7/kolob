@@ -12,9 +12,9 @@ def index(request):
     if ('ward' in request.REQUEST):
         # Use the request's ward if available
         user_ward_name = request.REQUEST['ward']
-    elif hasattr(request.user, 'wardmember'):
+    else:
         # Default to the ward the user is in
-        user_ward_name = request.user.wardmember.ward.name
+        user_ward_name = request.user.ward.name
 
     # See if we have a valid ward name, ALL_WARDS is always valid
     ward_list = Ward.objects.all()

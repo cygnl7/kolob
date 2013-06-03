@@ -1,28 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
 
-from ordinances.models import Ancestor, Ward, WardMember
-
-# Inline admin descriptor for wardmember
-class WardMemberInline(admin.StackedInline):
-    model = WardMember
-    can_delete = False
-    verbose_name_plural = 'ward member'
-
-# Define a new User admin
-class UserAdmin(UserAdmin):
-    inlines = (WardMemberInline, )
-    list_display = ('username',
-                    'first_name',
-                    'last_name',
-                    'ward', # Calls ward method below
-                    'email',
-                    'is_staff',
-                    'is_superuser')
-
-    def ward(self, instance):
-        return instance.wardmember.ward.name.encode('utf8')
+from ordinances.models import Ancestor, Ward
+from auth.models import WardUser
 
 class AncestorAdmin(admin.ModelAdmin):
     list_display = ('submitter',
@@ -61,7 +41,7 @@ class AncestorAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if getattr(obj, 'submitter', None) is None:
             obj.submitter = request.user
-            obj.ward = request.user.wardmember.ward
+            obj.ward = request.user.ward
         obj.save()
 
     def queryset(self, request):
@@ -70,9 +50,24 @@ class AncestorAdmin(admin.ModelAdmin):
         else:
             return Ancestor.objects.filter(submitter=request.user).order_by('surname', 'given_name')
 
-admin.site.register(Ancestor, AncestorAdmin)
-admin.site.register(Ward)
+class WardUserAdmin(admin.ModelAdmin):
+    list_display = ('username',
+                    'first_name',
+                    'last_name',
+                    'email',
+                    'ward',
+                    'is_staff',
+                    'is_superuser'
+                    )
+    list_editable = ('first_name', 'last_name', 'email', 'ward')
+    list_filter = ('is_staff', 'is_superuser', 'ward__name')
+    search_fields = ['username', 'first_name', 'last_name', 'email', 'ward__name']
 
-# Re-register UserAdmin to get WardMember customizations
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+class WardAdmin(admin.ModelAdmin):
+    list_display = ('name', 'member_goal', 'ordinance_goal'
+                    )
+    list_editable = ('member_goal', 'ordinance_goal')
+
+admin.site.register(Ancestor, AncestorAdmin)
+admin.site.register(Ward, WardAdmin)
+admin.site.register(WardUser, WardUserAdmin)
